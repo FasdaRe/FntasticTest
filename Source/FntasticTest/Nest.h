@@ -18,6 +18,6 @@ public:
 
 private:
 
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"), Category = "SpawnNumber")
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"), Category = "NestNumber")
 		int NestNumber;
 };

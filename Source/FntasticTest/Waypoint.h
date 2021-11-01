@@ -22,7 +22,7 @@ public:
 
 private:
 
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"),Category = "WaypointNumber")
 		int WaypointNumber;
 };
 

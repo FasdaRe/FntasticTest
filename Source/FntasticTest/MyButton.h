@@ -40,7 +40,7 @@ public:
 
 private:
 
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"), Category = "SpawnNumber")
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"), Category = "Spawning")
 		int SpawnOnNest;
 	TArray<AActor*> Nests;
 };

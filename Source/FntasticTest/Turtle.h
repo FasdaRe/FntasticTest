@@ -52,7 +52,7 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Death")
 		bool isDead;
-	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"), Category = "Waypoint")
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"), Category = "WaypointNumber")
 		int ToWaypoint;
 	AActor* WaypointRef;
 	TArray<AActor*> Waypoints;
