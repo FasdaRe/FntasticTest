@@ -20,6 +20,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, Category = "Active")
+	bool Active;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -35,6 +38,8 @@ public:
 
 	UFUNCTION()
 		void ButtonClicked(UPrimitiveComponent* ClickedComp, FKey ButtonPressed);
+	UFUNCTION()
+		void Activate();
 	UFUNCTION()
 		void SpawnObj(FVector Loc, FRotator Rot);
 

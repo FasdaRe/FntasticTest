@@ -25,6 +25,7 @@ void AMyButton::BeginPlay()
 {
 	Super::BeginPlay();
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ANest::StaticClass(), Nests);
+	Active = true;
 }
 
 // Called every frame
@@ -36,24 +37,36 @@ void AMyButton::Tick(float DeltaTime)
 
 void AMyButton::ButtonClicked(UPrimitiveComponent* ClickedComp, FKey ButtonPressed)
 {
-	FVector Loc;
-	FRotator Rot;
-	for (AActor* Nest : Nests)
-	{
-		ANest* NestItr = Cast<ANest>(Nest);
-
-		if (NestItr)
+	if (Active) {
+		FVector Loc;
+		FRotator Rot;
+		for (AActor* Nest : Nests)
 		{
-			if (NestItr->GetNestNumber() == SpawnOnNest)
+			ANest* NestItr = Cast<ANest>(Nest);
+
+			if (NestItr)
 			{
-				Loc = NestItr->GetActorLocation();
-				Rot = NestItr->GetActorRotation();
+				if (NestItr->GetNestNumber() == SpawnOnNest)
+				{
+					Loc = NestItr->GetActorLocation();
+					Rot = NestItr->GetActorRotation();
+				}
 			}
 		}
+
+
+		SpawnObj(Loc, Rot);
+		FTimerHandle Handle;
+		Active = false;
+		this->SetActorLocation(this->GetActorLocation() + FVector{5, 0, 0});
+		GetWorldTimerManager().SetTimer(Handle, this, &AMyButton::Activate, 1.5f, false);
 	}
+}
 
-
-	SpawnObj(Loc, Rot);
+void AMyButton::Activate()
+{
+	Active = true;
+	this->SetActorLocation(this->GetActorLocation() - FVector{ 5, 0, 0 });
 }
 
 void AMyButton::SpawnObj(FVector Loc, FRotator Rot)
